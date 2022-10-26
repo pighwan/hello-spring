@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
-
+// ctrl + shift + t 를 누르면 테스트 뼈대가 자동 생성.
     private final MemberRepository memberRepository = new MemoryMemberRepository();
 
     /**
@@ -37,7 +37,12 @@ public class MemberService {
                             throw new IllegalStateException("이미 존재하는 회원입니다.");
                         });
     }
+    // 서비스는 비지니스를 처리하는게 서비스의 롤이므로 서비스는 비지니스에 의존적으로 설계, 용어 또한 비지니스에 맞게 선택
+    // 리포지토리는 기계적으로 개발스럽게 용어를 선택
 
+    /**
+     * 전체 회원 조회
+     */
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
