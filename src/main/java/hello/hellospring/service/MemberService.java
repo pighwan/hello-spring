@@ -9,7 +9,11 @@ import java.util.Optional;
 
 public class MemberService {
 // ctrl + shift + t 를 누르면 테스트 뼈대가 자동 생성.
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {       // dependency injection(DI)
+        this.memberRepository = memberRepository;
+    }
 
     /**
      * 회원 가입
