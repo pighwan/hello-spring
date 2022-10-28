@@ -3,15 +3,19 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MemberService {
 // ctrl + shift + t 를 누르면 테스트 뼈대가 자동 생성.
     private final MemberRepository memberRepository;
 
-    public MemberService(MemberRepository memberRepository) {       // dependency injection(DI)
+    @Autowired
+    public MemberService(MemberRepository memberRepository) {       // dependency Injection(DI). 의존관계 주입.
         this.memberRepository = memberRepository;
     }
 
