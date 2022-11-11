@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 // 통합 테스트. 하지만 단위 테스트를 잘 만드는 것이 더 중요하다~
+// 테스트를 잘 작성하는 것에 대해 고민하고 직접 작성해보는 것이 중요!
+// 개발을 잘 하는 사람일수록 테스트를 꼼꼼하게 작성하고 테스트 케이스를 잘 작성함
 @SpringBootTest
 @Transactional  // DB에 test한 것을 롤백해줘서 반복 테스트를 가능하게 해줌(테스트 시작 전에 트랜잭션을 시작하고, 테스트 완료 후에 항상 롤백한다. 다음 테스트에 영향을 주지 않는다)
 class MemberServiceIntegrationTest {
