@@ -9,7 +9,7 @@ import java.util.*;
 //public class MemoryMemberRepository implements MemberRepository {
 //
 //    private static Map<Long, Member> store = new HashMap<>();
-//    private static long sequence = 0L;
+//    private static long sequence = 0L;    // sequence: 0, 1, 2 이렇게 생성해주는 애.
 //
 //    @Override
 //    public Member save(Member member) {
@@ -20,14 +20,14 @@ import java.util.*;
 //
 //    @Override
 //    public Optional<Member> findById(Long id) {
-//        return Optional.ofNullable(store.get(id));
+//        return Optional.ofNullable(store.get(id));    // null이 넘어갈 가능성이 있으니 optional로 감싸서 넘겨줌.
 //    }
 //
 //    @Override
 //    public Optional<Member> findByName(String name) {
 //        return store.values().stream()
 //                .filter(member -> member.getName().equals(name))
-//                .findAny();
+//                .findAny();                           // 하나라도 찾는 기능. 하나도 없으면 Optional로 감싸서 넘김.
 //    }
 //
 //    @Override

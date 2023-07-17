@@ -12,6 +12,8 @@ public class Member {
     private Long id;
     private String name;
 
+    // getter, setter가 좋냐~ 뭐 이런 얘기가 있지만 가장 간단한 예제로 일단 만들겠음.
+
     public Long getId() {
         return id;
     }
