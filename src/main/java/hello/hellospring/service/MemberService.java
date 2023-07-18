@@ -26,7 +26,7 @@ import java.util.Optional;
 //    public Long join(Member member) {
 //        // 같은 이름이 있는 중복 회원 x
 ////        Optional<Member> result = memberRepository.findByName(member.getName());
-////        result.ifPresent(m -> {
+////        result.ifPresent(m -> {     // ifPresent : 값이 있으면 로직이 동작.(Optional이기에 가능)
 ////            throw new IllegalStateException("이미 존재하는 회원입니다.");
 ////        });
 //        // 위의 것을 줄이면 아래
