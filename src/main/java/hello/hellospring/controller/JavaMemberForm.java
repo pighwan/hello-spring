@@ -1,6 +1,6 @@
 package hello.hellospring.controller;
 
-public class MemberForm {
+public class JavaMemberForm {
     private String name;
 
     public String getName() {

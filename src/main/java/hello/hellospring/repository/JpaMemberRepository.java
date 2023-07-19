@@ -1,12 +1,12 @@
 package hello.hellospring.repository;
 
-import hello.hellospring.domain.Member;
+import hello.hellospring.domain.JavaMember;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-public class JpaMemberRepository implements MemberRepository{
+public class JpaMemberRepository implements JavaMemberRepository {
 
     private final EntityManager em;
 
@@ -14,22 +14,22 @@ public class JpaMemberRepository implements MemberRepository{
         this.em = em;
     }
 
-    public Member save(Member member) {
+    public JavaMember save(JavaMember member) {
         em.persist(member);
         return member;
     }
 
-    public Optional<Member> findById(Long id) {
-        Member member = em.find(Member.class, id);
+    public Optional<JavaMember> findById(Long id) {
+        JavaMember member = em.find(JavaMember.class, id);
         return Optional.ofNullable(member);
     }
 
-    public Optional<Member> findByName(String name) {
-        List<Member> result = em.createQuery("select m from Member m where m.name = :name", Member.class).setParameter("name", name).getResultList();
+    public Optional<JavaMember> findByName(String name) {
+        List<JavaMember> result = em.createQuery("select m from JavaMember m where m.name = :name", JavaMember.class).setParameter("name", name).getResultList();
         return result.stream().findAny();
     }
 
-    public List<Member> findAll() {
-        return em.createQuery("select m from Member m", Member.class).getResultList();
+    public List<JavaMember> findAll() {
+        return em.createQuery("select m from JavaMember m", JavaMember.class).getResultList();
     }
 }

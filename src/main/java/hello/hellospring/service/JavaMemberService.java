@@ -1,8 +1,7 @@
 package hello.hellospring.service;
 
-import hello.hellospring.domain.Member;
-import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
+import hello.hellospring.domain.JavaMember;
+import hello.hellospring.repository.JavaMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,19 +10,19 @@ import java.util.List;
 import java.util.Optional;
 
 //@Service
-//public class MemberService {
+//public class JavaMemberService {
 //// ctrl + shift + t 를 누르면 테스트 뼈대가 자동 생성.
-//    private final MemberRepository memberRepository;
+//    private final JavaMemberRepository javaMemberRepository;
 //
 //    @Autowired
-//    public MemberService(MemberRepository memberRepository) {       // dependency Injection(DI). 의존관계 주입.
-//        this.memberRepository = memberRepository;
+//    public JavaMemberService(JavaMemberRepository memberRepository) {       // dependency Injection(DI). 의존관계 주입.
+//        this.javaMemberRepository = memberRepository;
 //    }
 //
 //    /**
 //     * 회원 가입
 //     */
-//    public Long join(Member member) {
+//    public Long join(JavaMember member) {
 //        // 같은 이름이 있는 중복 회원 x
 ////        Optional<Member> result = memberRepository.findByName(member.getName());
 ////        result.ifPresent(m -> {     // ifPresent : 값이 있으면 로직이 동작.(Optional이기에 가능)
@@ -36,12 +35,12 @@ import java.util.Optional;
 ////                });
 //        // 위의 것을 리팩토링하면 아래
 //        validateDuplicateMember(member);    // 중복 회원 검증
-//        memberRepository.save(member);
+//        javaMemberRepository.save(member);
 //        return member.getId();
 //    }
 //
-//    private void validateDuplicateMember(Member member) {
-//        memberRepository.findByName(member.getName())
+//    private void validateDuplicateMember(JavaMember member) {
+//        javaMemberRepository.findByName(member.getName())
 //                        .ifPresent(m -> {
 //                            throw new IllegalStateException("이미 존재하는 회원입니다.");
 //                        });
@@ -52,12 +51,12 @@ import java.util.Optional;
 //    /**
 //     * 전체 회원 조회
 //     */
-//    public List<Member> findMembers() {
-//        return memberRepository.findAll();
+//    public List<JavaMember> findMembers() {
+//        return javaMemberRepository.findAll();
 //    }
 //
-//    public Optional<Member> findOne(Long memberId) {
-//        return memberRepository.findById(memberId);
+//    public Optional<JavaMember> findOne(Long memberId) {
+//        return javaMemberRepository.findById(memberId);
 //    }
 //
 //}
@@ -65,11 +64,18 @@ import java.util.Optional;
 // 자바 코드로 직접 스프링 빈 등록하기
 
 @Transactional
-public class MemberService {
+public class JavaMemberService {
     // ctrl + shift + t 를 누르면 테스트 뼈대가 자동 생성.
-    private final MemberRepository memberRepository;
 
-    public MemberService(MemberRepository memberRepository) {       // dependency Injection(DI). 의존관계 주입.
+
+//    private final MemberRepository memberRepository = new MemoryMemberRepository();
+
+    // MemberService와 MemberServiceTest의 new MemoryMemberRepository()는 서로 다른 친구임.
+    // 같은 인스턴스를 쓰게 바꾸는 작업이 아래. (DI)
+
+    private final JavaMemberRepository memberRepository;
+
+    public JavaMemberService(JavaMemberRepository memberRepository) {       // dependency Injection(DI). 의존관계 주입.
         this.memberRepository = memberRepository;
     }
 
@@ -77,7 +83,7 @@ public class MemberService {
      * 회원 가입
      */
 
-    public Long join(Member member) {
+    public Long join(JavaMember member) {
         // 같은 이름이 있는 중복 회원 x
 //        Optional<Member> result = memberRepository.findByName(member.getName());
 //        result.ifPresent(m -> {
@@ -94,7 +100,7 @@ public class MemberService {
         return member.getId();
     }
 
-    private void validateDuplicateMember(Member member) {
+    private void validateDuplicateMember(JavaMember member) {
         memberRepository.findByName(member.getName())
                 .ifPresent(m -> {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
@@ -106,11 +112,11 @@ public class MemberService {
     /**
      * 전체 회원 조회
      */
-    public List<Member> findMembers() {
+    public List<JavaMember> findMembers() {
         return memberRepository.findAll();
     }
 
-    public Optional<Member> findOne(Long memberId) {
+    public Optional<JavaMember> findOne(Long memberId) {
         return memberRepository.findById(memberId);
     }
 

@@ -1,11 +1,8 @@
 package hello.hellospring.service;
 
-import hello.hellospring.domain.Member;
-import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
+import hello.hellospring.domain.JavaMember;
+import hello.hellospring.repository.JavaMemberRepository;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,23 +17,23 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class MemberServiceIntegrationTest {
 
     @Autowired
-    MemberService memberService;
+    JavaMemberService memberService;
     @Autowired
-    MemberRepository memberRepository;
+    JavaMemberRepository memberRepository;
 
     @Test
     void 회원가입() {
         // Test는 한글로 이름을 적어도 상관없음.
 
         // given : 뭔가가 주어졌을 때
-        Member member = new Member();
+        JavaMember member = new JavaMember();
         member.setName("spring");
 
         // when : 이걸 실행했을 때
         Long saveId = memberService.join(member);
 
         // then : 결과가 이게 나와야 함
-        Member findMember = memberService.findOne(saveId).get();
+        JavaMember findMember = memberService.findOne(saveId).get();
         Assertions.assertThat(member.getName()).isEqualTo(findMember.getName());
 
     }
@@ -44,10 +41,10 @@ class MemberServiceIntegrationTest {
     @Test
     public void 중복_회원_예외() {
         // given
-        Member member1 = new Member();
+        JavaMember member1 = new JavaMember();
         member1.setName("spring");
 
-        Member member2 = new Member();
+        JavaMember member2 = new JavaMember();
         member2.setName("spring");
 
         // when

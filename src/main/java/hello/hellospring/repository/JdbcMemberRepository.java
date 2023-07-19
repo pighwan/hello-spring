@@ -1,18 +1,18 @@
 package hello.hellospring.repository;
-import hello.hellospring.domain.Member;
+import hello.hellospring.domain.JavaMember;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-public class JdbcMemberRepository implements MemberRepository {
+public class JdbcMemberRepository implements JavaMemberRepository {
     private final DataSource dataSource;
     public JdbcMemberRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
     @Override
-    public Member save(Member member) {
+    public JavaMember save(JavaMember member) {
         String sql = "insert into member(name) values(?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -37,7 +37,7 @@ public class JdbcMemberRepository implements MemberRepository {
         }
     }
     @Override
-    public Optional<Member> findById(Long id) {
+    public Optional<JavaMember> findById(Long id) {
         String sql = "select * from member where id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -48,7 +48,7 @@ public class JdbcMemberRepository implements MemberRepository {
             pstmt.setLong(1, id);
             rs = pstmt.executeQuery();
             if(rs.next()) {
-                Member member = new Member();
+                JavaMember member = new JavaMember();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
                 return Optional.of(member);
@@ -62,7 +62,7 @@ public class JdbcMemberRepository implements MemberRepository {
         }
     }
     @Override
-    public List<Member> findAll() {
+    public List<JavaMember> findAll() {
         String sql = "select * from member";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -71,9 +71,9 @@ public class JdbcMemberRepository implements MemberRepository {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
-            List<Member> members = new ArrayList<>();
+            List<JavaMember> members = new ArrayList<>();
             while(rs.next()) {
-                Member member = new Member();
+                JavaMember member = new JavaMember();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
                 members.add(member);
@@ -86,7 +86,7 @@ public class JdbcMemberRepository implements MemberRepository {
         }
     }
     @Override
-    public Optional<Member> findByName(String name) {
+    public Optional<JavaMember> findByName(String name) {
         String sql = "select * from member where name = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -97,7 +97,7 @@ public class JdbcMemberRepository implements MemberRepository {
             pstmt.setString(1, name);
             rs = pstmt.executeQuery();
             if(rs.next()) {
-                Member member = new Member();
+                JavaMember member = new JavaMember();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
                 return Optional.of(member);
